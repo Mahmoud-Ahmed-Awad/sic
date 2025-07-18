@@ -3,7 +3,7 @@ import {
   coursesWithLearnerType,
   getAllCourses,
   getCourseId,
-} from "../controllers/CourseController.js";
+} from "../controllers/courseController.js";
 
 const courseRouter = express.Router();
 

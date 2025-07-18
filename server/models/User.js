@@ -1,5 +1,15 @@
 import mongoose from "mongoose";
 
+const answeredExamSchema = new mongoose.Schema({
+  examId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Exam",
+    required: true,
+  },
+  correct: [Number],
+  incorrect: [Number],
+});
+
 const userSchema = new mongoose.Schema(
   {
     _id: {
@@ -75,6 +85,11 @@ const userSchema = new mongoose.Schema(
         ref: "Course",
       },
     ],
+    answeredExams: [answeredExamSchema],
+    points: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

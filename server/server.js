@@ -9,6 +9,7 @@ import connectCloudinary from "./configs/cloudinary.js";
 import courseRouter from "./routes/courseRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import pathRouter from "./routes/pathRoutes.js";
+import examRouter from "./routes/examRoutes.js";
 
 // Initialize Express
 const app = express();
@@ -30,6 +31,7 @@ app.use("/api/educator", educatorRouter);
 app.use("/api/course", courseRouter);
 app.use("/api/user", userRouter);
 app.use("/api/path", pathRouter);
+app.use("/api/exam", examRouter);
 
 // port
 const PORT = process.env.PORT || 5000;
