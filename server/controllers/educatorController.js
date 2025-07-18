@@ -158,16 +158,15 @@ export const editCourse = async (req, res) => {
 
       if (currentCourse) {
         if (currentCourse.educator === userId) {
-          if (!imageFile) {
-            return res
-              .status(400)
-              .json({ success: false, message: "Thumbnail Not Attached" });
+          if (imageFile) {
+            await cloudinary.uploader.destroy(
+              currentCourse.courseThumbnail.split("/").pop().split(".").shift()
+            );
+            const imageUpload = await cloudinary.uploader.upload(
+              imageFile.path
+            );
+            newCourseData.courseThumbnail = imageUpload.secure_url;
           }
-          await cloudinary.uploader.destroy(
-            currentCourse.courseThumbnail.split("/").pop().split(".").shift()
-          );
-          const imageUpload = await cloudinary.uploader.upload(imageFile.path);
-          newCourseData.courseThumbnail = imageUpload.secure_url;
           await Course.findByIdAndUpdate(currentCourse._id, newCourseData);
           return res
             .status(200)
