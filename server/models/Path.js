@@ -31,7 +31,7 @@ const pathSchema = new mongoose.Schema({
   createdBy: {
     type: String,
     ref: "User",
-    required,
+    required: true,
   },
 });
 
