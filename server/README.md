@@ -181,9 +181,17 @@
 
 ### one course
 
-- get /api/course/{courseId}
+- get /api/course/id/{courseId}
 
 - headers: { Authorization: `Bearer ${tokan}` } (optional (needed to get edit data))
+
+- success {success: true, course}
+
+- fail {sucess: false, message}
+
+### Courses with learner type
+
+- get /api/course/learner-type/{learnerType}
 
 - success {success: true, course}
 

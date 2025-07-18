@@ -51,3 +51,15 @@ export const getCourseId = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+// Get Courses With Learner Type
+export const coursesWithLearnerType = async (req, res) => {
+  try {
+    const { learnerType } = req.params;
+    const courses = await Course.find({ learnerType });
+    return res.status(200).json({ success: true, courses });
+  } catch (error) {
+    console.error("Error fetching courses by learner type:", error);
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};

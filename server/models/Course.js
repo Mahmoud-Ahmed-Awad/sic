@@ -96,7 +96,7 @@ const courseSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
-    learnersType: {
+    learnerType: {
       type: String,
       enum: ["visual", "audio", "kinetic"],
       required: true,
