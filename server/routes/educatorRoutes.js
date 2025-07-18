@@ -19,6 +19,12 @@ educatorRouter.post(
   protectEducator,
   addCourse
 );
+educatorRouter.patch(
+  "/edit-course",
+  upload.single("image"),
+  protectEducator,
+  editCourse
+);
 educatorRouter.get("/courses", protectEducator, getEducatorCourses);
 educatorRouter.get("/dashboard", protectEducator, educatorDashboardData);
 educatorRouter.get(

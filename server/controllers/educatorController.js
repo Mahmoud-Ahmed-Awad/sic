@@ -144,3 +144,49 @@ export const getEnrolledStudentsData = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+// Function To Edit Course
+export const editCourse = async (req, res) => {
+  try {
+    const { userId } = req.auth();
+    const { courseData } = req.body;
+    const imageFile = req.file;
+
+    if (userId && courseData) {
+      const newCourseData = JSON.parse(courseData);
+      const currentCourse = await Course.findById(newCourseData.courseId);
+
+      if (currentCourse) {
+        if (currentCourse.educator === userId) {
+          if (!imageFile) {
+            return res
+              .status(400)
+              .json({ success: false, message: "Thumbnail Not Attached" });
+          }
+          await cloudinary.uploader.destroy(
+            currentCourse.courseThumbnail.split("/").pop().split(".").shift()
+          );
+          const imageUpload = await cloudinary.uploader.upload(imageFile.path);
+          newCourseData.courseThumbnail = imageUpload.secure_url;
+          await Course.findByIdAndUpdate(currentCourse._id, newCourseData);
+          return res
+            .status(200)
+            .json({ success: true, courseData: newCourseData });
+        } else {
+          return res.status(400).json({
+            success: false,
+            message: "You Don't Have Access To This Course",
+          });
+        }
+      } else {
+        return res
+          .status(404)
+          .json({ success: false, message: "Course Not Found" });
+      }
+    }
+  } catch (error) {
+    console.log("Error On Edit Course:", error);
+
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
