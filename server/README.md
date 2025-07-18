@@ -203,7 +203,7 @@
 
 - post /api/path/add
 
-- headers: { Authorization: `Bearer ${tokan}` } (optional (needed to get edit data))
+- headers: { Authorization: `Bearer ${tokan}` }
 
 - req body {name, description, courses: [courseId]}
 
@@ -226,5 +226,37 @@
 - get /api/path/all/{pathId}
 
 - success {success: true, path}
+
+- fail {sucess: false, message}
+
+# exam routes
+
+### create exam
+
+- post /api/exam/create
+
+- headers: { Authorization: `Bearer ${tokan}` }
+
+- req body {title, questions: [{text, choices, correct: choiceIndex}]}
+
+- success {success: true, exam}
+
+- fail {sucess: false, message}
+
+### get exam
+
+- get /api/exam/{examId}
+
+- success {success: true, exam}
+
+- fail {sucess: false, message}
+
+### answer exam
+
+- post /api/exam/answer
+
+- req body {examId, answers}
+
+- success {success: true, correct, incorrect, points}
 
 - fail {sucess: false, message}
