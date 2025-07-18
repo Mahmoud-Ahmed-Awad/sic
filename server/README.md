@@ -6,7 +6,7 @@
 
 - headers: { Authorization: `Bearer ${tokan}` }
 
-- req body = {age: userAge, school: userSchool, government: userGovernment, phoneNumber: userPhoneNumber}
+- req body = {age: userAge, school: userSchool, government: userGovernment, phoneNumber: userPhoneNumber, learningType: ["visual", "audio", "kinetic"]}
 
 - success {success: true, user}
 

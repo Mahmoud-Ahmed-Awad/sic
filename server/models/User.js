@@ -58,6 +58,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    learningType: {
+      type: String,
+      enum: ["visual", "audio", "kinetic"],
+      required: false,
+    },
     email: {
       type: String,
       required: true,

@@ -228,9 +228,9 @@ export const addUserRating = async (req, res) => {
 // Complate User Profile
 export const complateUserProfile = async (req, res) => {
   try {
-    const { age, government, school, phoneNumber } = req.body;
+    const { age, government, school, phoneNumber, learningType } = req.body;
 
-    if (!age || !government || !school || !phoneNumber) {
+    if (!age || !government || !school || !phoneNumber || !learningType) {
       return res
         .status(400)
         .json({ sucess: false, message: "All Faildes Required" });

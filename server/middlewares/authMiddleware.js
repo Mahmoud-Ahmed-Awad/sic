@@ -30,7 +30,13 @@ export const checkComplatedProfile = async (req, res, next) => {
     const userId = req.auth().userId;
     const user = await User.findById(userId);
 
-    if (!user.age || !user.phoneNumber || !user.government || !user.school) {
+    if (
+      !user.age ||
+      !user.phoneNumber ||
+      !user.government ||
+      !user.school ||
+      !user.learningType
+    ) {
       return res.status(403).json({
         success: false,
         message: "Unauthorized Access",
