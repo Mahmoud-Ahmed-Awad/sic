@@ -1,5 +1,5 @@
 import { clerkClient } from "@clerk/express";
-import User from "../models/User";
+import User from "../models/User.js";
 
 // Middleware (Protect Educator Routes)
 export const protectEducator = async (req, res, next) => {
