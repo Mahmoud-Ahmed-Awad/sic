@@ -161,7 +161,7 @@ export const updateUserCourseProgress = async (req, res) => {
 export const getUserCourseProgress = async (req, res) => {
   try {
     const userId = req.auth().userId;
-    const { courseId } = req.body;
+    const { courseId } = req.params;
     const progressData = await CourseProgress.findOne({ userId, courseId });
     res.status(200).json({
       success: true,
@@ -221,6 +221,47 @@ export const addUserRating = async (req, res) => {
     });
   } catch (error) {
     console.error("Error adding user rating:", error);
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// Complate User Profile
+export const complateUserProfile = async (req, res) => {
+  try {
+    const { age, government, school, phoneNumber } = req.body;
+
+    if (!age || !government || !school || !phoneNumber) {
+      return res
+        .status(400)
+        .json({ sucess: false, message: "All Faildes Required" });
+    }
+
+    if (phoneNumber.length > 11) {
+      return res
+        .status(400)
+        .json({ sucess: false, message: "Phone Number Is Too Long" });
+    }
+
+    if (phoneNumber.length > 10) {
+      return res
+        .status(400)
+        .json({ sucess: false, message: "Phone Number Is Too Short" });
+    }
+
+    const phoneNumberRegex = /^01[0125][0-9]{8}$/;
+
+    if (phoneNumber.search(phoneNumberRegex)) {
+      return res
+        .status(400)
+        .json({ sucess: false, message: "Phone Number Is Not Valid" });
+    }
+
+    const userId = req.auth().userId;
+    const user = await User.findByIdAndUpdate(userId, req.body);
+
+    return res.status(200).json({ success: true, user });
+  } catch (error) {
+    console.error("Error complate user profile:", error);
     return res.status(500).json({ success: false, message: error.message });
   }
 };
