@@ -24,6 +24,15 @@ export const getCourseId = async (req, res) => {
   try {
     const courseData = await Course.findById(id).populate({ path: "educator" });
 
+    // Check if course educator
+    const userId = req.auth().userId;
+
+    if (userId && userId.toString() === courseData.educator._id.toString()) {
+      return res
+        .status(200)
+        .json({ success: true, courseEducator: true, courseData });
+    }
+
     // Remove lectureUrl if isPreviewFree is False
     courseData.courseContent.forEach((chapter) => {
       chapter.chapterContent.forEach((lecture) => {
