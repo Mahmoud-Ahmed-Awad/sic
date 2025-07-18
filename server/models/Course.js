@@ -96,6 +96,11 @@ const courseSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
+    learnersType: {
+      type: String,
+      enum: ["visual", "audio", "kinetic"],
+      required: true,
+    },
   },
   { timestamps: true, minimize: false }
 );

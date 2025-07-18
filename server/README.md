@@ -97,6 +97,7 @@
 - req body {
   courseData: {
   courseTitle, courseDescription, coursePrice, discount,
+  learnersType: ["visual", "audio", "kinetic"],
   courseContent: [{
   chapterId, chapterOrder, chapterTitle,
   chapterContent: [{
