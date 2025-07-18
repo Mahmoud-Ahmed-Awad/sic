@@ -39,7 +39,7 @@ export const checkComplatedProfile = async (req, res, next) => {
     ) {
       return res.status(403).json({
         success: false,
-        message: "Unauthorized Access",
+        message: "Complate Your Profile First",
       });
     }
 
