@@ -6,8 +6,9 @@ import { clerkWebhooks, stripeWebhooks } from "./controllers/webhooks.js";
 import educatorRouter from "./routes/educatorRoutes.js";
 import { clerkMiddleware } from "@clerk/express";
 import connectCloudinary from "./configs/cloudinary.js";
-import courseRouter from "./routes/courseRoute.js";
+import courseRouter from "./routes/courseRoutes.js";
 import userRouter from "./routes/userRoutes.js";
+import pathRouter from "./routes/pathRoutes.js";
 
 // Initialize Express
 const app = express();
@@ -28,6 +29,7 @@ app.post("/clerk", clerkWebhooks);
 app.use("/api/educator", educatorRouter);
 app.use("/api/course", courseRouter);
 app.use("/api/user", userRouter);
+app.use("/api/path", pathRouter);
 
 // port
 const PORT = process.env.PORT || 5000;

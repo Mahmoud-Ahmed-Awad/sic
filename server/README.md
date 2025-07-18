@@ -196,3 +196,35 @@
 - success {success: true, course}
 
 - fail {sucess: false, message}
+
+# path routes
+
+### add path
+
+- post /api/path/add
+
+- headers: { Authorization: `Bearer ${tokan}` } (optional (needed to get edit data))
+
+- req body {name, description, courses: [courseId]}
+
+- req file thumbnail
+
+- success {success: true, path}
+
+- fail {sucess: false, message}
+
+### get all paths
+
+- get /api/path/all
+
+- success {success: true, paths}
+
+- fail {sucess: false, message}
+
+### get path by id
+
+- get /api/path/all/{pathId}
+
+- success {success: true, path}
+
+- fail {sucess: false, message}
