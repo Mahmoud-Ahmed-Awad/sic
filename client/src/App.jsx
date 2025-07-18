@@ -9,6 +9,7 @@ import Educator from "./pages/educator/Educator";
 import Dashboard from "./pages/educator/Dashboard";
 import AddCourse from "./pages/educator/AddCourse";
 import MyCourses from "./pages/educator/MyCourses";
+import MyCourses from "./pages/educator/EditCourse";
 import StudentsEnrolled from "./pages/educator/StudentsEnrolled";
 import Navbar from "./components/students/Navbar";
 import "quill/dist/quill.snow.css";
