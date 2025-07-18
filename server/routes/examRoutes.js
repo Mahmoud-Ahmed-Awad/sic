@@ -1,6 +1,10 @@
 import express from "express";
-import { protectEducator } from "../middlewares/authMiddleware";
-import { answerExam, createExam, getExam } from "../controllers/examController";
+import { protectEducator } from "../middlewares/authMiddleware.js";
+import {
+  answerExam,
+  createExam,
+  getExam,
+} from "../controllers/examController.js";
 
 const examRouter = express.Router();
 
